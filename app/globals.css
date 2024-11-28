@@ -73,3 +73,6 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.test{
+  color: #f97316;
+}

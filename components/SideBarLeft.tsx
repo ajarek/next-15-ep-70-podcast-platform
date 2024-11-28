@@ -3,11 +3,12 @@ import Link from "next/link"
 import React from "react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
+import { Compass, House, Mic } from "lucide-react"
 
 const SideBarLeft = () => {
   const pathname = usePathname()
   return (
-    <div className='min-w-[280px] flex flex-col gap-12 p-4 border-r-2'>
+    <div className='min-w-[280px] max-sm:min-w-fit flex flex-col gap-12 p-4 border-r-2'>
         <div className="flex items-center gap-2">
         <Image
           src="/icons/logo.svg"
@@ -16,7 +17,7 @@ const SideBarLeft = () => {
           height={20}
           className="object-contain"
         />
-      <h1 className='text-xl font-semibold'>Podcast</h1>
+      <h1 className='text-xl font-semibold max-sm:hidden'>Podcast</h1>
         </div>
       <nav className='flex  flex-col gap-4'>
         <Link
@@ -25,14 +26,11 @@ const SideBarLeft = () => {
           }`}
           href='/'
         >
-             <Image
-          src="/icons/home.svg"
-          alt="logo"
-          width={20}
-          height={20}
-          className="object-contain"
-        />
+         <House color="#f97316" />
+        <div className="max-sm:hidden">
+
           Home
+        </div>
         </Link>
         <Link
           className={`flex items-center gap-2  text-xl hover:text-primary ${
@@ -40,29 +38,16 @@ const SideBarLeft = () => {
           }`}
           href='/discover'
         >
-             <Image
-          src="/icons/discover.svg"
-          alt="logo"
-          width={20}
-          height={20}
-          className="object-contain"
-        />
-          Discover
+            <Compass color="#f97316" />
+          <div className="max-sm:hidden">Discover</div>
         </Link>
         <Link
           className={`flex items-center gap-2  text-xl hover:text-primary ${
             pathname === "/create-podcast" ? "border-r-2 border-primary" : ""
           }`}
           href='/create-podcast'
-        >
-             <Image
-          src="/icons/microphone.svg"
-          alt="logo"
-          width={20}
-          height={20}
-          className="object-contain"
-        />
-          Create Podcast
+        ><Mic color="#f97316" />
+          <div className="max-sm:hidden">Create Podcast</div>
         </Link>
       </nav>
     </div>

@@ -13,9 +13,12 @@ const Discover =async () => {
     redirect('/register')
   }
   return (
-    <div className='min-h-[calc(100vh-64px)] flex justify-center items-center p-24'>
-      <h1 className='text-3xl'>Discover</h1>
+    <div className="flex  flex-col items-start justify-start min-h-screen p-4 gap-4">
+      <h1 className='text-xl  hover:text-primary  '>Discover</h1>
+      
+       
     </div>
+  
   )
 }
 
