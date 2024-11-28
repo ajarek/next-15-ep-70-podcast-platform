@@ -81,7 +81,7 @@ export const { auth, handlers: { GET, POST },} = NextAuth({
       return session
     },
     async redirect({ baseUrl }: { url: string; baseUrl: string }) {
-      return baseUrl + '/page-user'
+      return baseUrl + '/discover'
     },
   },
   secret: process.env.AUTH_SECRET,

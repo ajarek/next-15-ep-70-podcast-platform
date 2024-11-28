@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider"
+import SideBarLeft from "@/components/SideBarLeft";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,8 +37,18 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <div className="min-h-screen flex ">
+
+
+          <SideBarLeft/>
+          <div className="flex flex-col flex-1">
         <Navbar/>
         {children}
+
+
+          </div>
+
+          </div>
         </ThemeProvider>
       </body>
     </html>
