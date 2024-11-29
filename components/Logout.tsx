@@ -6,7 +6,7 @@ import { KeyRound } from "lucide-react"
 
 const Logout = async ({ session }: { session: Session | null }) => {
   return (
-    <>
+    <div>
       {session ? (
         <LogoutBtn />
       ) : (
@@ -27,7 +27,7 @@ const Logout = async ({ session }: { session: Session | null }) => {
       {session && (
         <span className='px-4 max-lg:hidden'>{session.user?.email}</span>
       )}
-    </>
+    </div>
   )
 }
 

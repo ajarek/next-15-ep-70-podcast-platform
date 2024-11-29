@@ -26,6 +26,16 @@ export const addUser = async (formData: UserWithoutId) => {
   }
 }
 
+export const getAllUsers = async () => {
+  try {
+    await connectToDb()
+    const users = await User.find({})
+    return users
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const deleteUser = async (formData: FormData) => {
   const id = formData.get('_id')
 
