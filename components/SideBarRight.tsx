@@ -2,7 +2,8 @@ import Logout from "@/components/Logout"
 import { auth } from "@/app/api/auth/auth"
 import { User } from "@/lib/models"
 import { ModeToggle } from "./ModeToggle"
-
+import PodcastsCarousel from "./PodcastsCarousel"
+import { podcastData } from "@/constants/index";
 type Session = {
     user: User & { admin: boolean }
     expires: string
@@ -16,6 +17,7 @@ const SideBarRight = async() => {
         <Logout session={session} />
         <ModeToggle />
       </div>
+      <PodcastsCarousel podcasts={podcastData} />
     </div>
   )
 }

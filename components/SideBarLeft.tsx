@@ -8,7 +8,7 @@ import { Compass, House, Mic } from "lucide-react"
 const SideBarLeft = () => {
   const pathname = usePathname()
   return (
-    <div className='min-w-[280px] max-sm:min-w-fit flex flex-col gap-12 p-4 border-r-2'>
+    <div className='min-w-[280px] max-lg:min-w-fit flex flex-col gap-12 p-4 border-r-2'>
         <div className="flex items-center gap-2">
         <Image
           src="/icons/logo.svg"
@@ -17,7 +17,7 @@ const SideBarLeft = () => {
           height={20}
           className="object-contain"
         />
-      <h1 className='text-xl font-semibold max-sm:hidden'>Podcast</h1>
+      <h1 className='text-xl font-semibold max-lg:hidden'>Podcast</h1>
         </div>
       <nav className='flex  flex-col gap-4'>
         <Link
@@ -27,7 +27,7 @@ const SideBarLeft = () => {
           href='/'
         >
          <House color="#f97316" />
-        <div className="max-sm:hidden">
+        <div className="max-lg:hidden">
 
           Home
         </div>
@@ -39,7 +39,7 @@ const SideBarLeft = () => {
           href='/discover'
         >
             <Compass color="#f97316" />
-          <div className="max-sm:hidden">Discover</div>
+          <div className="max-lg:hidden">Discover</div>
         </Link>
         <Link
           className={`flex items-center gap-2  text-xl hover:text-primary ${
@@ -47,7 +47,7 @@ const SideBarLeft = () => {
           }`}
           href='/create-podcast'
         ><Mic color="#f97316" />
-          <div className="max-sm:hidden">Create Podcast</div>
+          <div className="max-lg:hidden">Create Podcast</div>
         </Link>
       </nav>
     </div>
