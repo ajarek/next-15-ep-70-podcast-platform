@@ -13,10 +13,10 @@ const PodcastCard = ({podcasts}:{podcasts:PropsPodcast[]}) => {
   return (
     <>
       {podcasts.map((podcast) => (
-        <Card key={podcast.id} className="flex flex-col items-center justify-center">
+        <Card key={(podcast._id).toString()} className="flex flex-col items-center justify-center">
           <CardHeader>
             <div className="relative w-[180px] h-[180px] ">
-              <Image src={podcast.imgURL} alt={podcast.title} fill className=" object-cover" />       
+              <Image src={podcast.imgURL} alt={podcast.title} fill sizes="(max-width: 768px) 100vw, 33vw" className=" object-cover" />       
             </div>
           </CardHeader>
           <CardContent>

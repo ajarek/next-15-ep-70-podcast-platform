@@ -12,7 +12,7 @@ const CreatePodcast =async () => {
   return (
     <div className="flex  flex-col items-start justify-start min-h-screen p-4 gap-4">
     <h1 className='text-xl  hover:text-primary  '>Create Podcast</h1>
-    <FormAddPodcast/>
+    <FormAddPodcast user={session?.user?.name || ''}/>
      
   </div>
   )

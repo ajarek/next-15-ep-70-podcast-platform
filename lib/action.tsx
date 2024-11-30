@@ -1,7 +1,8 @@
 'use server'
 
 import connectToDb from './connectToDb'
-import { User, UserWithoutId } from './models'
+import { User, UserWithoutId, Podcasts } from './models'
+import type { Podcasts as PodcastsType } from './models'
 import { revalidatePath } from 'next/cache'
 import bcrypt from 'bcryptjs'
 import { redirect } from 'next/navigation'
@@ -75,5 +76,36 @@ export const updateUser = async (formData: FormData) => {
     return { message: 'Failed to update to db'+err }
   } finally {
     redirect('/dashboard/')
+  }
+}
+
+export const addPodcast = async (data: PodcastsType) => {
+  const { title, description, imgURL, user, details } = data
+  try {
+    connectToDb()
+    const newPodcasts = new Podcasts({
+      title,
+      description,
+     imgURL,
+      user,
+      details
+    })
+    await newPodcasts.save()
+    console.log('saved' + newPodcasts)
+    revalidatePath('/')
+  } catch (err) {
+    console.log(err)
+  } finally {
+    redirect('/')
+  }
+}
+
+export const getAllPodcasts = async () => {
+  try {
+    await connectToDb()
+    const podcasts = await Podcasts.find({})
+    return podcasts
+  } catch (err) {
+    console.log(err)
   }
 }

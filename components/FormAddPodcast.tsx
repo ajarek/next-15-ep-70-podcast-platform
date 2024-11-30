@@ -25,6 +25,7 @@ import {
 import { useRouter } from "next/navigation"
 import { Textarea } from "./ui/textarea"
 import { voiceDetails } from "@/constants/index"
+import { addPodcast } from "@/lib/action"
 
 const FormSchema = z.object({
   podcast: z.object({
@@ -39,45 +40,44 @@ const FormSchema = z.object({
 
     image: z.string().min(8, {
       message: "Minimum 8 characters.",
-      }),
+    }),
 
-    //   details: z.string().min(3, {
-    //   message: "Minimum 3 characters.",
-    // }),
+    details: z.string().min(3, {
+      message: "Minimum 3 characters.",
+    }),
   }),
 })
 
-export function FormAddPodcast() {
-  const router = useRouter()
+export function FormAddPodcast({ user }: { user: string }) {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    const item = {
-      title: data.podcast.title,
-      description: data.podcast.description,
-    
-      image: data.podcast.image
+  const onSubmit= (formData:  z.infer<typeof FormSchema>) => {
+    const data ={
+      title: formData.podcast.title,
+      description: formData.podcast.description,
+      imgURL: formData.podcast.image,
+      user,
+      details: formData.podcast.details
     }
-    console.log(item)
-
-    router.push(`/`)
+     addPodcast(data)
   }
 
   return (
     <Form {...form}>
       <form
+         
         onSubmit={form.handleSubmit(onSubmit)}
         className='w-full flex flex-col gap-4 bg-background p-4 '
       >
+        <input type="hidden" value={user} name="user" />
         <FormField
           control={form.control}
           name='podcast'
           render={({ field }) => (
             <FormItem className='flex flex-col'>
-              
+
 
               <FormControl>
                 <div className='w-full flex flex-col items-start  gap-4   '>
@@ -100,10 +100,10 @@ export function FormAddPodcast() {
                   <FormLabel className=''>Description</FormLabel>
                   <Textarea
                     value={field.value?.description || ""}
-                    onChange={(e) =>field.onChange({...field.value, description: e.target.value})
+                    onChange={(e) => field.onChange({ ...field.value, description: e.target.value })
                     }
                     className='w-full'
-                    />
+                  />
                 </div>
               </FormControl>
               <FormControl>
@@ -121,15 +121,15 @@ export function FormAddPodcast() {
                     className='w-full'
                   />
                 </div>
-                </FormControl>
-              {/* <FormControl>
+              </FormControl>
+              <FormControl>
                 <div className='w-full flex flex-col items-start  gap-4  '>
                   <FormLabel className='text-sm'>Voice Details</FormLabel>
                   <Select
                     onValueChange={(e) =>
                       field.onChange({
                         ...field.value,
-                        type: e,
+                        details: e,
                       })
                     }
                     defaultValue={field.value?.details || ""}
@@ -141,23 +141,22 @@ export function FormAddPodcast() {
                     </FormControl>
 
                     <SelectContent>
-                        {voiceDetails.map((detail) => (
-                            <SelectItem key={detail.id} className='' value={detail.name}>
-                             <h2 className='capitalize'>{detail.name}</h2>
+                      {voiceDetails.map((detail) => (
+                        <SelectItem key={(detail.id).toString()} className='' value={detail.name}>
+                          <h2 className='capitalize'>{detail.name}</h2>
                         </SelectItem>
-                        ))}
-                      
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
-              </FormControl> */}
+              </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type='submit' aria-label='Send'>
-         Create Podcast
+          Create Podcast
         </Button>
       </form>
     </Form>

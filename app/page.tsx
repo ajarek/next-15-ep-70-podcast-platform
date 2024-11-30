@@ -1,5 +1,5 @@
 import Podcasts from "@/components/Podcasts";
-import Image from "next/image";
+
 
 export default function Home() {
   return (

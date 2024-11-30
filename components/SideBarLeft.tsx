@@ -13,8 +13,8 @@ const SideBarLeft = () => {
         <Image
           src="/icons/logo.svg"
           alt="logo"
-          width={20}
-          height={20}
+          width={23}
+          height={27}
           className="object-contain"
         />
       <h1 className='text-xl font-semibold max-lg:hidden'>Podcast</h1>
