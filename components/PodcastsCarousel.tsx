@@ -36,11 +36,11 @@ const PodcastsCarousel=({podcasts}:{podcasts:PropsPodcast[]})=> {
       <Carousel setApi={setApi} className="w-full ">
         <CarouselContent>
           {podcasts.map((pd) => (
-            <CarouselItem key={pd._id}>
+            <CarouselItem key={pd?._id}>
               <Card className=" rounded-sm   p-0">
                 <CardContent className="flex aspect-square items-center justify-center  w-full h-full p-2 ">
                 
-              <Image src={pd.imgURL || 'https://randomuser.me/api/portraits/men/69.jpg'} alt= 'Image Podcast' width={250} height={250} className=" w-full h-full object-cover rounded-sm" />       
+              <Image src={pd?.imgURL || 'https://randomuser.me/api/portraits/men/69.jpg'} alt= 'Image Podcast' width={250} height={250} className=" w-full h-full object-cover rounded-sm" />       
             
                 </CardContent>
               </Card>
