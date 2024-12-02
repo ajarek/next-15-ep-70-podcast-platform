@@ -12,6 +12,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 import Image from "next/image";
+import Link from "next/link"
  
 const PodcastsCarousel=({podcasts}:{podcasts:PropsPodcast[]})=> {
   const [api, setApi] = React.useState<CarouselApi>()
@@ -38,11 +39,13 @@ const PodcastsCarousel=({podcasts}:{podcasts:PropsPodcast[]})=> {
           {podcasts.map((pd) => (
             <CarouselItem key={pd?._id}>
               <Card className=" rounded-sm   p-0">
+              <Link href={`/podcast/${pd._id}`}>
                 <CardContent className="flex aspect-square items-center justify-center  w-full h-full p-2 ">
                 
               <Image src={pd?.imgURL || 'https://randomuser.me/api/portraits/men/69.jpg'} alt= 'Image Podcast' width={250} height={250} className=" w-full h-full object-cover rounded-sm" />       
             
                 </CardContent>
+                </Link>
               </Card>
             </CarouselItem>
           ))}
