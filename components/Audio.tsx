@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-const Audio = () => {
-  const [text, setText] = useState<string>("")
+const Audio = ({text}:{text:string}) => {
+  
   const [audio, setAudio] = useState<string | null>(null)
 
   const toSpeech = async () => {
-    const response = await fetch("/api/speech", {
+    const response = await fetch("/api/speechToText", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,11 +26,7 @@ const Audio = () => {
 
   return (
     <div className='flex flex-col gap-4'>
-      <Input
-        type='text'
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
+      
       {audio && <audio src={audio} controls></audio>}
       <Button onClick={toSpeech}>Convert to Speech</Button>
     </div>

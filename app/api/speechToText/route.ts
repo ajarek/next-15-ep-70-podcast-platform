@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const { text } = (await req.json()) as {
     text: string
   }
-
+  
    const response = await openai.audio.speech.create({
     model: "tts-1",
     voice: "shimmer",
@@ -19,4 +19,5 @@ export async function POST(req: Request) {
       "Content-Type": response.type,
     },
   })
+
 }

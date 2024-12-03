@@ -21,7 +21,7 @@ const PodcastId = async ({ params }: { params: Promise<{ id: string }> }) => {
       <h1 className='text-xl'>{PodcastId?.title}</h1>
       <p>{PodcastId?.description}</p>
       <p className='capitalize'>author: {PodcastId?.user}</p>
-      <Audio/>
+      <Audio text={PodcastId?.description ||""}/>
     </div>
 
   )
